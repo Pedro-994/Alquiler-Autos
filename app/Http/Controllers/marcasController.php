@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Marca;
+use DB;
 
 class marcasController extends Controller
 {
@@ -25,12 +26,18 @@ class marcasController extends Controller
      */
     public function create()
     {
+        $conteo = DB::table('marcas')->count();
+        if(!$conteo){
+            $conteo = $conteo+1;
+            return view('marcas.create')  
+            ->with('conteo',$conteo); 
+        }
         $consulta = Marca::orderby('idmarca','desc')
         ->take(1) 
         ->get();
-        $idsigue =$consulta[0]->idmarca +1;
-    return view('marcas.create')
-    ->with('idsigue',$idsigue);
+        $conteo =$consulta[0]->idmarca +1;
+        return view('marcas.create')
+        ->with('conteo',$conteo);
     }
 
     /**

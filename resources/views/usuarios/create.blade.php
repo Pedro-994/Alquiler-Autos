@@ -1,10 +1,10 @@
 @extends('layouts/head')
 @section('title')
-	Agregar usuario
+	Agregar usuario 
 @endsection
 @extends('layouts.forms')
 @section('titulo')
-<i class="fas  fa-user-secret fa-fw"></i> AGREGAR USUARIO
+<i class="fas fa-users fa-fw"></i> AGREGAR USUARIO
 <div class="container-fluid">
   <ul class="full-box list-unstyled page-nav-tabs">
       <li>
@@ -17,7 +17,7 @@
           <a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR USUARIO</a>
       </li>
   </ul>	
-</div> 
+</div>
 @endsection
 @section('formulario')
 {!! Form::open(['url' => '/usuarios','method' => 'post','class'=> 'form-neon']) !!}
@@ -120,7 +120,7 @@
       </div>
     </div>
   </div>
-</div>     
+</div>
 {!! Form::close() !!}
 @endsection
 @include('layouts/footer')

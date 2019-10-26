@@ -28,7 +28,7 @@
   <div class="col-12 col-md-1">
     <div class="form-group">
       {!! Form::label('', ('Id auto'), ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::text('idauto',$idsigue, ['readonly','class' =>'form-control text-center']) !!}
+      {!! Form::text('idauto',$conteo, ['readonly','class' =>'form-control text-center']) !!}
     </div>
   </div>
   <div class="col-12 col-md-5">
@@ -64,10 +64,10 @@
               @endif
             </div>
           </div>
-          <div class="col-12 col-md-1">
+          <div class="col-12 col-md-2">
               <div class="form-group">
                   {!! Form::label('', ('Km')) !!}
-                  {!! Form::text('kilometraje',old('kilometraje'), ['class' =>'form-control']) !!}
+                  {!! Form::text('kilometraje',old('kilometraje'), ['class' =>'form-control col-md-9']) !!}
                 @if($errors->first('kilometraje'))
                 <div class="alert alert-danger">
                   {{$errors->first('kilometraje')}}
@@ -75,7 +75,7 @@
                 @endif
               </div>
           </div>
-          <div class="col-12 col-md-4">
+          <div class="col-12 col-md-3">
                 <div class="form-group">
                     {!! Form::label('', ('Seguro')) !!}
                     {!! Form::text('seguro',old('seguro'), ['class' =>'form-control']) !!}
@@ -105,6 +105,11 @@
                 <option value='{{$marca->idmarca}}'>{{$marca->nombre}}</option>
               @endforeach
               </select>
+              @if($errors->first('idmarca'))
+              <div class="alert alert-danger">
+                {{$errors->first('idmarca')}}
+              </div>
+            @endif
             </div>
           </div>
           <div class="col-12 col-md-4">
@@ -115,6 +120,11 @@
                 <option value='{{$aseguradora->idaseguradora}}'>{{$aseguradora->nombre}}</option>
               @endforeach
               </select>
+              @if($errors->first('idaseguradora'))
+              <div class="alert alert-danger">
+                {{$errors->first('idaseguradora')}}
+              </div>
+            @endif
             </div>
           </div>
           <div class="col-12 col-md-4">
@@ -125,6 +135,11 @@
                 <option value='{{$categoria->idcategoria}}'>{{$categoria->nombre}}</option>
               @endforeach
              </select>
+             @if($errors->first('idcategoria'))
+             <div class="alert alert-danger">
+               {{$errors->first('idcategoria')}}
+             </div>
+           @endif
             </div>
           </div>    
           <div class="col-12 col-md-8">

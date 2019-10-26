@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Categoria;
+use DB;
 
 class categoriasController extends Controller
 {
@@ -25,12 +26,18 @@ class categoriasController extends Controller
      */
     public function create()
     {
+        $conteo = DB::table('categorias')->count();
+        if(!$conteo){
+            $conteo = $conteo+1;
+            return view('categorias.create')  
+            ->with('conteo',$conteo); 
+        }
         $consulta = Categoria::orderby('idcategoria','desc')
         ->take(1) 
         ->get();
-        $idsigue =$consulta[0]->idcategoria +1;
-    return view('categorias.create')
-    ->with('idsigue',$idsigue);
+        $conteo =$consulta[0]->idcategoria +1;
+        return view('categorias.create')
+        ->with('conteo',$conteo);
     }
 
     /**

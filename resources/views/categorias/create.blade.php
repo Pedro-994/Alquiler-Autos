@@ -28,7 +28,7 @@
           <div class="col-12 col-md-1">
             <div class="form-group">
               {!! Form::label('', ('Idcategoria'), ['class'=> 'bmd-label-floating']) !!}
-              {!! Form::text('idcategoria',$idsigue, ['readonly','class' =>'form-control text-center']) !!}
+              {!! Form::text('idcategoria',$conteo, ['readonly','class' =>'form-control text-center']) !!}
             </div>
           </div>
           <div class="col-12 col-md-5">

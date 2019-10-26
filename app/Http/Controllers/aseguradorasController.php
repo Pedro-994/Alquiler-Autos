@@ -31,14 +31,22 @@ class aseguradorasController extends Controller
      */
     public function create()
     {
+        $conteo = DB::table('aseguradoras')->count();
+        $marcas = Marca::orderby('nombre','ASC')->get();
+        if(!$conteo){
+            $conteo = $conteo+1;
+            return view('aseguradoras.create')  
+            ->with('conteo',$conteo) 
+            ->with('marcas',$marcas);
+        }
         $consulta = Aseguradora::orderby('idaseguradora','desc')
         ->take(1) 
         ->get();
-        $marcas = Marca::orderby('nombre','ASC')->get();
         $idsigue =$consulta[0]->idaseguradora +1;
     return view('aseguradoras.create')
     ->with('idsigue',$idsigue)
     ->with('marcas',$marcas);
+
     }
  
     /**

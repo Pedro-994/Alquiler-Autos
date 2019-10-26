@@ -28,7 +28,7 @@
     <div class="col-12 col-md-1">
       <div class="form-group">
         {!! Form::label('', ('Id marca')) !!}
-        {!! Form::text('idmarca',$idsigue, ['readonly','class' =>'form-control']) !!}
+        {!! Form::text('idmarca',$conteo, ['readonly','class' =>'form-control text-center']) !!}
       </div>
     </div>
     <div class="col-12 col-md-5">

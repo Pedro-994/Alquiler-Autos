@@ -1,10 +1,10 @@
 @extends('layouts/head')
 @section('title')
-	Editar usuario
+	Editar usuario 
 @endsection
 @extends('layouts.forms')
 @section('titulo')
-<i class="fas  fa-user-secret fa-fw"></i> EDITAR USUARIO
+<i class="fas fa-users fa-fw"></i> EDITAR USUARIO
 <div class="container-fluid">
   <ul class="full-box list-unstyled page-nav-tabs">
       <li>
@@ -20,16 +20,27 @@
 </div>
 @endsection
 @section('formulario')
-{!! Form::open(['url' => '/usuarios/{{usuario->id}}','method' => 'post','class'=> 'form-neon']) !!}
+@if(session('update'))
+  <div class="alert alert-success mt-3">
+    {{session('update')}}
+  </div>
+@endif
+{!! Form::model($usuario,['method'=> 'POST','action'=> ['usuariosController@update',$usuario->idusuario]]) !!}
 {!! Form::token() !!}
 <input type="hidden" name="_method" value="PUT">
-<legend><i class="fas fa-user"></i> &nbsp; Actualizar informacion</legend>
+<legend><i class="fas fa-user"></i> &nbsp; Actualiza básica</legend>
 <div class="container-fluid">
   <div class="row">
+    <div class="col-12 col-md-1">
+      <div class="form-group">
+        {!! Form::label('', ('Idusuario'), ['class'=> 'bmd-label-floating']) !!}
+        {!! Form::text('idusuario',old('idusuario') , ['readonly','class' =>'form-control text-center']) !!}
+      </div>
+    </div>
     <div class="col-12 col-md-5">
       <div class="form-group">
         {!! Form::label('', ('Nombre')) !!}
-        {!! Form::text('nombre',old('nombre'), ['class' =>'form-control','value'=>'{{$usuario->nombre)}}']) !!}
+        {!! Form::text('nombre',old('nombre'), ['class' =>'form-control']) !!}
         @if($errors->first('nombre'))
         <div class="alert alert-danger">
           {{$errors->first('nombre')}}
@@ -40,7 +51,7 @@
     <div class="col-12 col-md-5">
       <div class="form-group">
         {!! Form::label('', ('Primer Apellido')) !!}
-        {!! Form::text('primerapellido',old('primerapellido'), ['class' =>'form-control','value'=>'{{$usuario->nombre)}}']) !!}
+        {!! Form::text('primerapellido',old('primerapellido'), ['class' =>'form-control']) !!}
         @if($errors->first('primerapellido'))
         <div class="alert alert-danger">
           {{$errors->first('primerapellido')}}
@@ -62,7 +73,7 @@
     <div class="col-12 col-md-5">
       <div class="form-group">
             {!! Form::label('', ('Fecha nacimiento')) !!}
-            {!! Form::date('fechanacimiento', 'fechanacimiento', ['class' =>'form-control text-center']) !!}
+            {!! Form::date('fechanacimiento', old('fechanacimiento'), ['class' =>'form-control text-center']) !!}
             @if($errors->first('fechanacimiento'))
             <div class="alert alert-danger">
               {{$errors->first('fechanacimiento')}}
@@ -73,7 +84,7 @@
     <div class="col-12 col-md-4">
         <div class="form-group">
             {!! Form::label('', ('Correo')) !!}
-            {!! Form::text('correo',old('correo'), ['class' =>'form-control','value'=>'correo']) !!}
+            {!! Form::text('correo',old('correo'), ['class' =>'form-control']) !!}
             @if($errors->first('correo'))
             <div class="alert alert-danger">
               {{$errors->first('correo')}}
@@ -84,7 +95,7 @@
     <div class="col-12 col-md-3">
       <div class="form-group">
         {!! Form::label('', ('Telefono')) !!}
-        {!! Form::text('telefono',old('telefono'), ['class' =>'form-control','value'=>'telefono'])!!}
+        {!! Form::text('telefono',old('telefono'), ['class' =>'form-control', ])!!}
         @if($errors->first('telefono'))
           <div class="alert alert-danger">
             {{$errors->first('telefono')}}
@@ -95,7 +106,7 @@
     <div class="col-12 col-md-5">
       <div class="form-group">
         {!! Form::label('', ('Password')) !!}
-        {!! Form::password('password', ['class' =>'form-control','value'=>'password']) !!}
+        {!! Form::text('password',old('password'),['class' =>'form-control']) !!}
         <span class="col-ms-6 form-text text-muted">
           Su contraseña debe tener más de 8 caracteres<br>debe contener al menos 1 mayúscula, 1 minúscula,1 numero y 1 carácter especial.
         </span>
@@ -106,16 +117,11 @@
         @endif
       </div>
     </div>
-    <div class="col-12 col-md-8">
       <div class="float-left">
-        {!! Form::submit('Enviar', ['class'=>'btn btn-outline-primary btn-lg mt-3']) !!}   
+        {!! Form::submit('Enviar', ['class'=>'btn btn-outline-primary btn-lg mt-3']) !!}
       </div>
-      <div class="float-right">  
-        {!! Form::reset('Borrar', ['class'=>'btn btn-outline-primary btn-lg mt-3']) !!}
-      </div>
-    </div>
   </div>
-</div>     
+</div>
 {!! Form::close() !!}
 @endsection
 @include('layouts/footer')

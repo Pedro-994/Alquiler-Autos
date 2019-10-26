@@ -15,8 +15,8 @@ class usuariosController extends Controller
      */
     public function index()
     {
-        $usuarios = Usuario::all();
-        return view("usuarios.index",compact("usuarios"));
+        $usuarios = Usuario::paginate(8);
+        return view("/usuarios.index",compact("usuarios"));
     }
 
     /**
@@ -88,7 +88,8 @@ class usuariosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $usuario = Usuario::findOrFail($id);
+        return view('usuarios.edit',compact('usuario'));
     }
 
     /**
@@ -100,7 +101,16 @@ class usuariosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return view('usuarios.update');
+        $this->validate($request, ['nombre'=>['regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú, ]*$/'],
+        'primerapellido'=>['regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú, ]*$/'],
+        'segundoapellido'=>['regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú, ]*$/'],
+        'fechanacimiento'=>'required',
+        'correo'=>['regex:/^[A-Za-z,á,é,í,ó,ú][A-Za-z,á,é,í,ó,ú,0-9]*[@][A-Za-z,á,é,í,ó,ú][A-Z,a-z,á,é,í,ó,ú]*[.][a-z][a-z][a-z]*$/'],
+        'telefono'=>['regex:/^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/'],
+        'password' => 'required|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-]).{6,}$/']);
+        $usuario = Usuario::findOrFail($id);
+        $usuario-> update($request->all()); 
+        return back()->with('update','La nota ha sido actualizada correctamente');
     }
 
     /**
@@ -111,6 +121,8 @@ class usuariosController extends Controller
      */
     public function destroy($id)
     {
-        return view('usuarios.delete');
+        $usuario = Usuario::findOrFail($id);
+        $usuario -> delete();
+        return back()->with('eliminar','Elemento eliminado exitosamente');
     }
 }

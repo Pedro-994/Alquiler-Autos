@@ -21,6 +21,11 @@
 @endsection
 
 @section('tabla')
+@if(session('eliminar'))
+  <div class="alert alert-success mt-3">
+    {{session('eliminar')}}
+  </div>
+@endif
 <thead>
     <tr>
       <th>Id Usuario</th>
@@ -52,15 +57,19 @@
       </a>
       </td>
       <td>
-        <form action="">
-          <button type="button" class="btn btn-warning">
-              <i class="far fa-trash-alt"></i>
+        <form method="POST" action="{{route('usuarios.destroy', $usuario->idusuario)}}">
+          @method('DELETE')
+          {!! Form::token() !!}
+          <button type="submit" class="btn btn-warning" value="DELETE" name="_method">
+            <i class="far fa-trash-alt"></i>
           </button>
-        </form>
+      </form>
       </td>
-
   @endforeach
 </tbody>
+@endsection
+@section('paginacion')
+{{$usuarios->links()}}
 @endsection
 @include('layouts.footer')
  

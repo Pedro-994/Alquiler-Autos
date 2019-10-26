@@ -35,18 +35,27 @@ class autosController extends Controller
      */
     public function create()
     {
-        $consulta = Auto::orderby('idauto','desc')
-        ->take(1) 
-        ->get();
+        $conteo = DB::table('autos')->count();
         $marcas = Marca::orderby('nombre','ASC')->get();
         $aseguradoras = Aseguradora::orderby('nombre','ASC')->get();
         $categorias = Categoria::orderby('nombre','ASC')->get();
-        $idsigue =$consulta[0]->idauto +1;
-    return view('autos.create')
-    ->with('idsigue',$idsigue)
-    ->with('marcas',$marcas)
-    ->with('aseguradoras',$aseguradoras)
-    ->with('categorias',$categorias);
+        if(!$conteo){
+            $conteo = $conteo+1;
+            return view('autos.create')  
+            ->with('conteo',$conteo)
+            ->with('marcas',$marcas)
+            ->with('aseguradoras',$aseguradoras)
+            ->with('categorias',$categorias);
+        }
+        $consulta = Auto::orderby('idauto','desc')
+        ->take(1) 
+        ->get();
+        $conteo =$consulta[0]->idauto +1;
+        return view('autos.create')
+        ->with('conteo',$conteo)
+        ->with('marcas',$marcas)
+        ->with('aseguradoras',$aseguradoras)
+        ->with('categorias',$categorias);
     }
 
     /**
@@ -62,7 +71,10 @@ class autosController extends Controller
                                     'color'=>'required',
                                     'kilometraje'=>'required',
                                     'seguro' => 'required',
-                                    'situacion'=>'required']);
+                                    'situacion'=>'required',                            'idmarca' =>'required',
+                                    'idaseguradora' =>'required',
+                                    'idcategoria' =>'required'
+                                    ]);
         $auto = new Auto;
         $auto -> matricula = $request-> matricula;
         $auto -> modelo = $request -> modelo;
