@@ -50,18 +50,24 @@
       <td>{{$auto -> aseguradora}}</td>
       <td>{{$auto -> categoria}}</td>
       <td> 
-        <a href="client-update.html" class="btn btn-success">
-            <i class="fas fa-sync-alt"></i>	
+        <a href="{{route('autos.edit', $auto->idauto)}}" class="btn btn-success">
+              <i class="fas fa-sync-alt"></i>	
         </a>
-      </td>
-      <td>
-        <form action="">
-          <button type="button" class="btn btn-warning">
+        </td>
+        <td>
+          <form method="POST" action="{{route('autos.destroy', $auto->idauto)}}">
+            @method('DELETE')
+            {!! Form::token() !!}
+            <button type="submit" class="btn btn-warning" value="DELETE" name="_method">
               <i class="far fa-trash-alt"></i>
-          </button>
+            </button>
         </form>
-      </td>
+        </td>
   </tr>
   @endforeach
 </tbody>
-@endsection @include('layouts.footer')
+@endsection 
+@section('paginacion')
+{{$autos->links()}}
+@endsection
+@include('layouts.footer')

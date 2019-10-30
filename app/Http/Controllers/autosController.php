@@ -22,8 +22,7 @@ class autosController extends Controller
         ->join('aseguradoras', 'autos.idaseguradora', '=', 'aseguradoras.idaseguradora')
         ->join('marcas', 'autos.idmarca', '=', 'marcas.idmarca')
         ->join('categorias', 'autos.idcategoria', '=', 'categorias.idcategoria')
-        ->select('autos.*', 'aseguradoras.nombre AS aseguradora', 'marcas.nombre AS marca','categorias.nombre AS categoria')
-        ->get();
+        ->select('autos.*', 'aseguradoras.nombre AS aseguradora', 'marcas.nombre AS marca','categorias.nombre AS categoria')->paginate(8);
        return view("autos.index",compact("autos"));
 
     }
@@ -109,7 +108,9 @@ class autosController extends Controller
      */
     public function edit($id)
     {
-        //
+        $marcas = Marca::findOrFail($id);
+        $auto = Auto::findOrFail($id);
+        return view('autos.edit',compact('auto'));
     }
 
     /**
@@ -121,7 +122,18 @@ class autosController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return view('autos.update');
+        $this->validate($request, ['matricula'=>['regex:/^[A-Z,0-9,-]*$/'],
+        'modelo'=>'required',
+        'color'=>'required',
+        'kilometraje'=>'required',
+        'seguro' => 'required',
+        'situacion'=>'required',                            'idmarca' =>'required',
+        'idaseguradora' =>'required',
+        'idcategoria' =>'required'
+        ]);
+        $auto = Auto::findOrFail($id);
+        $auto-> update($request->all()); 
+        return back()->with('update','Auto actualizado correctamente');
     }
 
     /**
@@ -132,6 +144,8 @@ class autosController extends Controller
      */
     public function destroy($id)
     {
-        return view('autos.delete');
+        $auto = Auto::findOrFail($id);
+        $auto -> delete();
+        return back()->with('eliminar','Elemento eliminado exitosamente');
     }
 }

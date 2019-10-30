@@ -16,7 +16,7 @@ class usuariosController extends Controller
     public function index()
     {
         $usuarios = Usuario::paginate(8);
-        return view("/usuarios.index",compact("usuarios"));
+        return view("usuarios.index",compact("usuarios"));
     }
 
     /**
@@ -76,8 +76,6 @@ class usuariosController extends Controller
      */
     public function show($id)
     {
-        $usuario = Usuario::findOrFail($id);
-        return view('usuarios.show',compact('usuario'));
     }
 
     /**
@@ -93,7 +91,7 @@ class usuariosController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. 
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -110,7 +108,7 @@ class usuariosController extends Controller
         'password' => 'required|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-]).{6,}$/']);
         $usuario = Usuario::findOrFail($id);
         $usuario-> update($request->all()); 
-        return back()->with('update','La nota ha sido actualizada correctamente');
+        return back()->with('update','Usuario actualizado correctamente');
     }
 
     /**
