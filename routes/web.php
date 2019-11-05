@@ -16,6 +16,4 @@ Route::resource('categorias', 'categoriasController');
 Route::resource('autos', 'autosController');
 Route::resource('marcas', 'marcasController');
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/','homeController@index');

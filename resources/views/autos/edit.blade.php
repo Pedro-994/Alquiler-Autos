@@ -25,7 +25,7 @@
     {{session('update')}}
   </div>
 @endif
-{!! Form::model($auto,['method'=> 'POST','action'=> ['autossController@update',$auto->idauto]]) !!}
+{!! Form::model($auto,['method'=> 'POST','action'=> ['autosController@update',$auto->idauto]]) !!}
 {!! Form::token() !!}
 <input type="hidden" name="_method" value="PUT">
 <legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
@@ -34,7 +34,7 @@
   <div class="col-12 col-md-1">
     <div class="form-group">
       {!! Form::label('', ('Id auto'), ['class'=> 'bmd-label-floating']) !!}
-      {!! Form::text('idauto',$conteo, ['readonly','class' =>'form-control text-center']) !!}
+      {!! Form::text('idauto',old('idauto'), ['readonly','class' =>'form-control text-center']) !!}
     </div>
   </div>
   <div class="col-12 col-md-5">

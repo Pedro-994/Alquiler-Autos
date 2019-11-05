@@ -11,35 +11,35 @@ Home
 		<div class="tile-tittle">USUARIOS</div>
 		<div class="tile-icon">
 			<i class="fas fa-users fa-fw"></i>
-			<p>5 Registrados</p>
+			<p>{{$usuarios.' Registrados'}}</p>
 		</div>
 	</a>
 	<a href="/autos" class="tile">
 		<div class="tile-tittle">AUTOS</div>
 		<div class="tile-icon">
 			<i class="fas fa-pallet fa-fw"></i>
-			<p>9 Registrados</p>
+		<p>{{$autos.' Registrados'}}</p>
 		</div>
 	</a>
 	<a href="/aseguradoras" class="tile">
 		<div class="tile-tittle">ASEGURADORAS</div>
 		<div class="tile-icon">
 			<i class="fas fa-file-invoice-dollar fa-fw"></i>
-			<p>10 Registrados</p>
+			<p>{{$aseguradoras.' Registrados'}}</p>
 		</div>
 	</a>
 	<a href="/marcas" class="tile">
 		<div class="tile-tittle">MARCAS</div>
 		<div class="tile-icon">
 			<i class="fas fa-user-secret fa-fw"></i>
-			<p>50 Registrados</p>
+			<p>{{$marcas.' Registrados'}}</p>
 		</div>
 	</a>
 	<a href="/categorias" class="tile">
 		<div class="tile-tittle">CATEGORIAS</div>
 		<div class="tile-icon">
 			<i class="fas fa-store-alt fa-fw"></i>
-			<p>1 Registrada</p>
+			<p>{{$categorias.' Registrados'}}</p>
 		</div>
 	</a>
 </div>

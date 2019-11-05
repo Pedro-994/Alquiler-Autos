@@ -108,9 +108,14 @@ class autosController extends Controller
      */
     public function edit($id)
     {
-        $marcas = Marca::findOrFail($id);
+        $marcas = Marca::orderby('nombre','ASC')->get();
+        $aseguradoras = Aseguradora::orderby('nombre','ASC')->get();
+        $categorias = Categoria::orderby('nombre','ASC')->get();
         $auto = Auto::findOrFail($id);
-        return view('autos.edit',compact('auto'));
+        return view('autos.edit',compact('auto'))
+        ->with('marcas',$marcas)
+        ->with('aseguradoras',$aseguradoras)
+        ->with('categorias',$categorias);
     }
 
     /**
@@ -127,7 +132,8 @@ class autosController extends Controller
         'color'=>'required',
         'kilometraje'=>'required',
         'seguro' => 'required',
-        'situacion'=>'required',                            'idmarca' =>'required',
+        'situacion'=>'required',                            
+        'idmarca' =>'required',
         'idaseguradora' =>'required',
         'idcategoria' =>'required'
         ]);

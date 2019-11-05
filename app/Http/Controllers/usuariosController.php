@@ -54,7 +54,7 @@ class usuariosController extends Controller
                                     'fechanacimiento'=>'required',
                                     'correo'=>['regex:/^[A-Za-z,á,é,í,ó,ú][A-Za-z,á,é,í,ó,ú,0-9]*[@][A-Za-z,á,é,í,ó,ú][A-Z,a-z,á,é,í,ó,ú]*[.][a-z][a-z][a-z]*$/'],
                                     'telefono'=>['regex:/^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/'],
-                                    'password' => 'required|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-]).{6,}$/']);
+                                    'password' => 'required|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-_]).{6,}$/']);
                                     
         $usuario = new Usuario;
         $usuario -> nombre = $request-> nombre;
@@ -105,7 +105,7 @@ class usuariosController extends Controller
         'fechanacimiento'=>'required',
         'correo'=>['regex:/^[A-Za-z,á,é,í,ó,ú][A-Za-z,á,é,í,ó,ú,0-9]*[@][A-Za-z,á,é,í,ó,ú][A-Z,a-z,á,é,í,ó,ú]*[.][a-z][a-z][a-z]*$/'],
         'telefono'=>['regex:/^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/'],
-        'password' => 'required|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-]).{6,}$/']);
+        'password' => 'required|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-_]).{6,}$/']);
         $usuario = Usuario::findOrFail($id);
         $usuario-> update($request->all()); 
         return back()->with('update','Usuario actualizado correctamente');
