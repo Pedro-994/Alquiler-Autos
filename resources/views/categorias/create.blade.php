@@ -20,6 +20,11 @@
 </div>
 @endsection
 @section('formulario')
+@if(session('create'))
+  <div class="alert alert-success mt-3">
+    {{session('create')}}
+  </div>
+@endif
       {!! Form::open(['url' => '/categorias','method' => 'post','class'=> 'form-neon'])!!}
       {!! Form::token() !!}
       <legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>

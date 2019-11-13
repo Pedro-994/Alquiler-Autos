@@ -8,10 +8,10 @@
 <div class="container-fluid">
   <ul class="full-box list-unstyled page-nav-tabs">
       <li>
-          <a href="/aseguradoras/create"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR MARCA</a>
+          <a href="/marcas/create"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR MARCA</a>
       </li>
       <li>
-          <a href="/aseguradoras"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE MARCAS</a>
+          <a href="/marcas"><i class="fas fa-clipboard-list fa-fw"></i> &nbsp; LISTA DE MARCAS</a>
       </li>
       <li>
           <a href="client-search.html"><i class="fas fa-search fa-fw"></i> &nbsp; BUSCAR MARCA</a>

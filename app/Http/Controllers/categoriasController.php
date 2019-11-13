@@ -54,7 +54,7 @@ class categoriasController extends Controller
         $categoria -> nombre = $request -> nombre;
         $categoria -> descripcion = $request -> descripcion;
         $categoria -> save();
-        return view('categorias.insert');
+        return back()->with('create','Categoria creada correctamente');
 
     }
 

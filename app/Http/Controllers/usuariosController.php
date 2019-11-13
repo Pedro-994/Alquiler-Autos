@@ -65,7 +65,7 @@ class usuariosController extends Controller
         $usuario -> telefono = $request -> telefono;
         $usuario -> password = $request -> password;
         $usuario -> save();
-        return view('usuarios.insert');
+        return back()->with('create','Usuario creado correctamente');
     }
  
     /**

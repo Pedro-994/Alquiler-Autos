@@ -85,7 +85,7 @@ class autosController extends Controller
         $auto -> idaseguradora = $request -> idaseguradora;
         $auto -> idcategoria = $request -> idcategoria;
         $auto->save();  
-        return view('autos.insert'); 
+        return back()->with('create','Auto creado correctamente');
     }
  
  

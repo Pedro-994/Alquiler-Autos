@@ -36,7 +36,7 @@ class aseguradorasController extends Controller
         if(!$conteo){
             $conteo = $conteo+1;
             return view('aseguradoras.create')  
-            ->with('conteo',$conteo) 
+            ->with('conteo',$conteo)  
             ->with('marcas',$marcas);
         }
         $consulta = Aseguradora::orderby('idaseguradora','desc')
@@ -45,6 +45,7 @@ class aseguradorasController extends Controller
         $idsigue =$consulta[0]->idaseguradora +1;
     return view('aseguradoras.create')
     ->with('idsigue',$idsigue)
+    ->with('conteo',$conteo)
     ->with('marcas',$marcas);
 
     }
@@ -65,7 +66,7 @@ class aseguradorasController extends Controller
         $aseguradora -> tipoAseguradora = $request -> tipoAseguradora;
         $aseguradora -> idmarca = $request -> idmarca;
         $aseguradora -> save();
-        return view('aseguradoras.insert');
+        return back()->with('create','Aseguradora creada correctamente');
     }
  
     /**

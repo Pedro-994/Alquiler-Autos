@@ -52,7 +52,7 @@ class marcasController extends Controller
         $marca = new Marca;
         $marca -> nombre = $request -> nombre;
         $marca -> save();
-        return view('marcas.insert');
+        return back()->with('create','Marca creada correctamente');
     }
  
     /**
