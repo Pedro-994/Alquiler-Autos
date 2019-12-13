@@ -56,15 +56,13 @@ class usuariosController extends Controller
                                     'telefono'=>['regex:/^[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]$/'],
                                     'password' => 'required|string|min:6|regex:/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*.-_]).{6,}$/']);
                                     
-        $usuario = new Usuario;
-        $usuario -> nombre = $request-> nombre;
-        $usuario -> primerapellido = $request -> primerapellido;
-        $usuario -> segundoapellido = $request -> segundoapellido;
-        $usuario -> fechanacimiento = $request -> fechanacimiento;
-        $usuario -> correo = $request -> correo;
-        $usuario -> telefono = $request -> telefono;
-        $usuario -> password = $request -> password;
-        $usuario -> save();
+        $usuario = $request->all();
+        if($archivo=$request->file('file')){
+            $nombre= $archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $usuario['ruta']=$nombre;
+        }
+        Usuario::create($usuario);
         return back()->with('create','Usuario creado correctamente');
     }
  

@@ -25,7 +25,7 @@
     {{session('create')}}
   </div>
 @endif
-{!! Form::open(['url' => '/usuarios','method' => 'post','class'=> 'form-neon']) !!}
+{!! Form::open(['url' => '/usuarios','method' => 'post', 'files'=>'true','class'=> 'form-neon']) !!}
 {!! Form::token() !!}
 <legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
 <div class="container-fluid">
@@ -114,6 +114,11 @@
             {{$errors->first('password')}}
           </div>
         @endif
+      </div>
+    </div>
+    <div class="col-12 col-md-5">
+      <div class="form-group">
+        {!! Form::file('file') !!}
       </div>
     </div>
     <div class="col-12 col-md-8">

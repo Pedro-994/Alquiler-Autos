@@ -66,25 +66,22 @@ class autosController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, ['matricula'=>['regex:/^[A-Z,0-9,-]*$/'],
-                                    'modelo'=>'required',
-                                    'color'=>'required',
-                                    'kilometraje'=>'required',
-                                    'seguro' => 'required',
-                                    'situacion'=>'required',                            'idmarca' =>'required',
-                                    'idaseguradora' =>'required',
-                                    'idcategoria' =>'required'
-                                    ]);
-        $auto = new Auto;
-        $auto -> matricula = $request-> matricula;
-        $auto -> modelo = $request -> modelo;
-        $auto -> color = $request -> color;
-        $auto -> kilometraje = $request -> kilometraje;
-        $auto -> seguro = $request -> seguro;
-        $auto -> situacion = $request -> situacion;
-        $auto -> idmarca = $request -> idmarca;
-        $auto -> idaseguradora = $request -> idaseguradora;
-        $auto -> idcategoria = $request -> idcategoria;
-        $auto->save();  
+        'modelo'=>'required',
+        'color'=>'required',
+        'kilometraje'=>'required',
+        'seguro' => 'required',
+        'situacion'=>'required',                            
+        'idmarca' =>'required',
+        'idaseguradora' =>'required',
+        'idcategoria' =>'required'
+        ]);
+        $auto = $request->all();
+        if($archivo=$request->file('file')){
+            $nombre= $archivo->getClientOriginalName();
+            $archivo->move('images', $nombre);
+            $auto['ruta']=$nombre;
+        }
+        Auto::create($auto);
         return back()->with('create','Auto creado correctamente');
     }
  

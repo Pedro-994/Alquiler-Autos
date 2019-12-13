@@ -16,4 +16,11 @@ Route::resource('categorias', 'categoriasController');
 Route::resource('autos', 'autosController');
 Route::resource('marcas', 'marcasController');
 
-Route::get('/Admin','adminController@index');
+
+Auth::routes();
+
+Route::get('/Admin', 'HomeController@index')->name('home');
+
+Route::get('/', function () {
+    return view('welcome');
+});

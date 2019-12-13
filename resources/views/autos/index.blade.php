@@ -32,6 +32,7 @@
       <th>Marca</th>
       <th>Aseguradora</th>
       <th>Categoria</th>
+      <th>Imagen</th>
       <th>Actualizar</th>
       <th>Eliminar</th> 
     </tr>
@@ -49,6 +50,7 @@
       <td>{{$auto -> marca}}</td>
       <td>{{$auto -> aseguradora}}</td>
       <td>{{$auto -> categoria}}</td>
+      <td> <img src="images/{{$auto->ruta}}" width="150"></td>
       <td> 
         <a href="{{route('autos.edit', $auto->idauto)}}" class="btn btn-success">
               <i class="fas fa-sync-alt"></i>	

@@ -36,6 +36,7 @@
       <th>Correo</th>
       <th>Telefono</th>
       <th>Contraseña</th>
+      <th>Imagen</th>
       <th>Actualizar</th>
       <th>Eliminar</th>
     </tr>
@@ -51,6 +52,7 @@
       <td>{{$usuario-> correo}}</td>
       <td>{{$usuario-> telefono}}</td>
       <td>{{$usuario-> password}}</td>
+      <td> <img src="images/{{$usuario->ruta}}" width="150"></td>
       <td> 
       <a href="{{route('usuarios.edit', $usuario->idusuario)}}" class="btn btn-success">
             <i class="fas fa-sync-alt"></i>	

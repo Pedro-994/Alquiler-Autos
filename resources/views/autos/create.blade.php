@@ -25,7 +25,7 @@
     {{session('create')}}
   </div>
 @endif
-{!! Form::open(['url' => '/autos','method' => 'post','class'=> 'form-neon']) !!}
+{!! Form::open(['url' => '/autos','method' => 'post', 'files'=>'true','class'=> 'form-neon']) !!}
 {!! Form::token() !!}
 <legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
 <div class="container-fluid">
@@ -146,7 +146,12 @@
              </div>
            @endif
             </div>
-          </div>    
+          </div> 
+          <div class="col-12 col-md-5">
+            <div class="form-group">
+              {!! Form::file('file') !!}
+            </div>
+          </div>         
           <div class="col-12 col-md-8">
             <div class="float-left">
               {!! Form::submit('Enviar', ['class'=>'btn btn-outline-primary btn-lg mt-3']) !!}   
