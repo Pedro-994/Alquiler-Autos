@@ -137,7 +137,7 @@ class autosController extends Controller
         'idaseguradora' =>'required',
         'idcategoria' =>'required'
         ]);
-        $auto = Auto::findOrFail($id);
+        $auto = Auto::findOrFail($id);  
         $auto-> update($request->all()); 
         return back()->with('update','Auto actualizado correctamente');
     }

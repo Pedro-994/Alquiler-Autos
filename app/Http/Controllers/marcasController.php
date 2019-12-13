@@ -74,7 +74,8 @@ class marcasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $marca = Marca::findOrFail($id);
+        return view('marcas.edit',compact('marca'));
     }
 
     /**
@@ -86,6 +87,10 @@ class marcasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, ['nombre'=>['regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú,0-9, ]*$/']]);
+        $marca = Marca::findOrFail($id);  
+        $marca-> update($request->all()); 
+        return back()->with('update','Marca actualizado correctamente');
         return view('marcas.update');
     }
 
@@ -97,6 +102,8 @@ class marcasController extends Controller
      */
     public function destroy($id)
     {
-        return view('marcas.delete');
+        $marca = Marca::findOrFail($id);
+        $marca -> delete();
+        return back()->with('eliminar','Elemento eliminado exitosamente');
     }
 }

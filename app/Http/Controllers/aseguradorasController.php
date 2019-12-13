@@ -20,7 +20,7 @@ class aseguradorasController extends Controller
         $aseguradoras = DB::table('aseguradoras')
         ->join('marcas', 'aseguradoras.idmarca', '=', 'marcas.idmarca')
         ->select('aseguradoras.*', 'marcas.nombre AS marca')
-        ->get();
+        ->paginate(8);
         return view("aseguradoras.index",compact("aseguradoras"));
     }
  
@@ -88,7 +88,10 @@ class aseguradorasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $marcas = Marca::orderby('nombre','ASC')->get();
+        $aseguradora = Aseguradora::findOrFail($id);
+        return view('aseguradoras.edit',compact('aseguradora'))
+        ->with('marcas',$marcas);  
     }
 
     /**
@@ -100,7 +103,11 @@ class aseguradorasController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return view('aseguradoras.update');
+        $this->validate($request, ['nombre'=>['regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú, ]*$/'],
+        'tipoAseguradora'=>['regex:/^[A-Z][A-Z,a-z,á,é,í,ó,ú, ]*$/']]);
+        $aseguradora = Aseguradora::findOrFail($id);
+        $aseguradora-> update($request->all()); 
+        return back()->with('update','Aseguradora actualizado correctamente');
     }
 
     /**
@@ -111,6 +118,8 @@ class aseguradorasController extends Controller
      */
     public function destroy($id)
     {
-        return view('aseguradoras.delete');
+        $aseguradora = Aseguradora::findOrFail($id); 
+        $aseguradora -> delete();
+        return back()->with('eliminar','Elemento eliminado exitosamente');
     }
 }

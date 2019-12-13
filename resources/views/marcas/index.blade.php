@@ -34,16 +34,18 @@
       <td>{{$marca-> idmarca}}</td>
       <td>{{$marca-> nombre}}</td>
       <td>
-        <a href="client-update.html" class="btn btn-success">
-            <i class="fas fa-sync-alt"></i>	
-        </a>
-      </td>
-      <td>
-        <form action="">
-          <button type="button" class="btn btn-warning">
-              <i class="far fa-trash-alt"></i>
-          </button>
-        </form>
+        <a href="{{route('marcas.edit', $marca->idmarca)}}" class="btn btn-success">
+          <i class="fas fa-sync-alt"></i>	
+    </a>
+    </td>
+    <td>
+      <form method="POST" action="{{route('marcas.destroy', $marca->idmarca)}}">
+        @method('DELETE')
+        {!! Form::token() !!}
+        <button type="submit" class="btn btn-warning" value="DELETE" name="_method">
+          <i class="far fa-trash-alt"></i>
+        </button>
+    </form>
       </td>
   </tr>
   @endforeach

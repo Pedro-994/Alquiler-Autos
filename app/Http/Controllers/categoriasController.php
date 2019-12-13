@@ -77,7 +77,8 @@ class categoriasController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categoria = Categoria::findOrFail($id);
+        return view('categorias.edit',compact('categoria'));
     }
 
     /**
@@ -89,6 +90,11 @@ class categoriasController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $this->validate($request, ['nombre'=>'required',
+        'descripcion'=>'required']);
+        $categoria = Categoria::findOrFail($id);  
+        $categoria-> update($request->all()); 
+        return back()->with('update','Categoria actualizado correctamente');
         return view('categorias.update');
     }
 
@@ -100,6 +106,8 @@ class categoriasController extends Controller
      */
     public function destroy($id)
     {
-        return view('categorias.delete');
+        $categoria = Categoria::findOrFail($id);
+        $categoria -> delete();
+        return back()->with('eliminar','Elemento eliminado exitosamente');
     }
 }

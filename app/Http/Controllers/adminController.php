@@ -10,7 +10,7 @@ use App\Categoria;
 use App\Usuarios;
 use DB;
 
-class homeController extends Controller
+class adminController extends Controller
 {
     public function index()
     {
@@ -21,7 +21,7 @@ class homeController extends Controller
         $usuarios = DB::table('usuarios')->count(); 
         $aseguradoras = Db::table('aseguradoras')->count(); 
 
-        return view('home')
+        return view('adminHome')
         ->with('autos',$autos)
         ->with('marcas',$marcas)
         ->with('aseguradoras',$aseguradoras)

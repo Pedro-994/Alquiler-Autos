@@ -42,16 +42,18 @@
         </td>
         <td>{{$aseguradora-> marca}}</td>
         <td>
-            <a href="client-update.html" class="btn btn-success">
-                <i class="fas fa-sync-alt"></i>	
-            </a>
+        <a href="{{route('aseguradoras.edit', $aseguradora->idaseguradora)}}" class="btn btn-success">
+        <i class="fas fa-sync-alt"></i>	
+        </a>
           </td>
-          <td>
-            <form action="">
-              <button type="button" class="btn btn-warning">
-                  <i class="far fa-trash-alt"></i>
-              </button>
-            </form>
+          <td>       
+            <form method="POST" action="{{route('aseguradoras.destroy', $aseguradora->idaseguradora)}}">
+            @method('DELETE')
+            {!! Form::token() !!}
+            <button type="submit" class="btn btn-warning" value="DELETE" name="_method">
+            <i class="far fa-trash-alt"></i>
+            </button>
+                    </form>
           </td>
     </tr>
     @endforeach

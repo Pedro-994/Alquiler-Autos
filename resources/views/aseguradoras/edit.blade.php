@@ -1,10 +1,10 @@
 @extends('layouts/head')
 @section('title')
-	Agregar aseguradora
+	Editar aseguradora
 @endsection
 @extends('layouts.forms')
 @section('titulo')
-<i class="fas  fa-user-secret fa-fw"></i> AGREGAR ASEGURADORA
+<i class="fas  fa-user-secret fa-fw"></i> EDITAR ASEGURADORA
 <div class="container-fluid">
   <ul class="full-box list-unstyled page-nav-tabs">
       <li>
@@ -20,20 +20,21 @@
 </div>
 @endsection
 @section('formulario')
-@if(session('create'))
+@if(session('update'))
   <div class="alert alert-success mt-3">
-    {{session('create')}}
+    {{session('update')}}
   </div>
 @endif
-{!! Form::open(['url' => '/aseguradoras','method' => 'post','class'=>'form-neon']) !!}
+{!! Form::model($aseguradora,['method'=> 'POST','action'=> ['aseguradorasController@update',$aseguradora->idaseguradora]]) !!}
 {!! Form::token() !!}
-<legend><i class="fas fa-user"></i> &nbsp; Información básica</legend>
+<input type="hidden" name="_method" value="PUT">
+<legend><i class="fas fa-user"></i> &nbsp; Actualiza información </legend>
 <div class="container-fluid">
   <div class="row">
       <div class="col-12 col-md-1">
         <div class="form-group">
-          {!! Form::label('', ('Id aseguradora')) !!}
-          {!! Form::text('idaseguradora',$conteo, ['readonly','class' =>'form-control text-center']) !!}
+          {!! Form::label('', ('Idaseguradora')) !!}
+          {!! Form::text('idaseguradora',old('idaseguradora'), ['readonly','class' =>'form-control text-center']) !!}
         </div>
       </div>
       <div class="col-12 col-md-5">
@@ -68,14 +69,9 @@
           </select>
         </div>
       </div>
-      <div class="col-12 col-md-8">
-        <div class="float-left">
-          {!! Form::submit('Enviar', ['class'=>'btn btn-outline-primary btn-lg mt-3']) !!}   
-        </div>
-        <div class="float-right">  
-          {!! Form::reset('Borrar', ['class'=>'btn btn-outline-primary btn-lg mt-3']) !!}
-        </div>
-      </div>  
+      <div class="float-left">
+        {!! Form::submit('Enviar', ['class'=>'btn btn-outline-primary btn-lg mt-3']) !!}
+      </div>
   </div>
 </div>        
 {!! Form::close() !!}

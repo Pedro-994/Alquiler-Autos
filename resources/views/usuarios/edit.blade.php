@@ -6,7 +6,7 @@
 @section('titulo')
 <i class="fas fa-users fa-fw"></i> EDITAR USUARIO
 <div class="container-fluid">
-  <ul class="full-box list-unstyled page-nav-tabs">
+  <ul class="full-box list-unstyled page-nav-tabs">  
       <li>
           <a href="/usuarios/create"><i class="fas fa-plus fa-fw"></i> &nbsp; AGREGAR USUARIO</a>
       </li>
@@ -28,12 +28,12 @@
 {!! Form::model($usuario,['method'=> 'POST','action'=> ['usuariosController@update',$usuario->idusuario]]) !!}
 {!! Form::token() !!}
 <input type="hidden" name="_method" value="PUT">
-<legend><i class="fas fa-user"></i> &nbsp; Actualiza básica</legend>
+<legend><i class="fas fa-user"></i> &nbsp; Actualiza información</legend>
 <div class="container-fluid">
   <div class="row">
     <div class="col-12 col-md-1">
       <div class="form-group">
-        {!! Form::label('', ('Idusuario'), ['class'=> 'bmd-label-floating']) !!}
+        {!! Form::label('', ('Idusuario')) !!}
         {!! Form::text('idusuario',old('idusuario') , ['readonly','class' =>'form-control text-center']) !!}
       </div>
     </div>
