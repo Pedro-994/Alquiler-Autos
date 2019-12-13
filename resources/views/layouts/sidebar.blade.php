@@ -11,7 +11,7 @@
 	<!-- Bootstrap V4.3 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<!-- Bootstrap Material Design V4.0 -->
-	<link rel="stylesheet" href={{ asset('css/bootstrap-material-design.min.css') }}>
+	<link rel="stylesheet" 
 	<!-- Font Awesome V5.9.0 -->
 	<link rel="stylesheet" href={{ asset('css/all.css') }}>
 	<!-- Sweet Alerts V8.13.0 CSS file -->

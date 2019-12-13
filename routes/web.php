@@ -22,5 +22,12 @@ Auth::routes();
 Route::get('/Admin', 'HomeController@index')->name('home');
 
 Route::get('/', function () {
+    $user = Auth::user();
+    if(Auth::check())
+        if($user->esAdmin()){
+        echo "Eres Administrador";
+        }else{
+        echo "No eres Administrador";
+        }
     return view('welcome');
 });
