@@ -19,15 +19,10 @@ Route::resource('marcas', 'marcasController');
 
 Auth::routes();
 
-Route::get('/Admin', 'HomeController@index')->name('home');
+Route::get('/admin', 'AdministradorController@index')->name('admin');
 
-Route::get('/', function () {
-    $user = Auth::user();
-    if(Auth::check())
-        if($user->esAdmin()){
-        echo "Eres Administrador";
-        }else{
-        echo "No eres Administrador";
-        }
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index');
+Route::get('/contacto', 'HomeController@contacto');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

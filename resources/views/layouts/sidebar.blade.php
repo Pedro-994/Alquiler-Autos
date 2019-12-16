@@ -33,7 +33,7 @@
 					<i class="far fa-times-circle show-nav-lateral"></i>
 					<img src={{ asset('assets/avatar/Avatar.png') }} class="img-fluid" alt="Avatar">
 					<figcaption class="roboto-medium text-center">
-						Pedro <br><small class="roboto-condensed-light">Admin</small>
+						{{ Auth::user()->name }} <br><small class="roboto-condensed-light">Admin</small>
 					</figcaption>
 				</figure>
 				<nav class="full-box nav-lateral-menu">

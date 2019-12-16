@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Auto;
+use App\Slider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -25,18 +25,24 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $autos = DB::table('autos')->count(); 
-        $marcas = DB::table('marcas')->count();
-        $categorias = DB::table('categorias')->count();
-        $usuarios = DB::table('usuarios')->count(); 
-        $aseguradoras = Db::table('aseguradoras')->count(); 
         
-        $user = Auth::user();
-        return view('adminHome')
-        ->with('autos',$autos)
-        ->with('marcas',$marcas)
-        ->with('aseguradoras',$aseguradoras)
-        ->with('categorias',$categorias)
-        ->with('usuarios',$usuarios);
+        $sliders= Slider::paginate(3);
+        $autos= Auto::paginate(8);
+
+        foreach($sliders as $slider){
+            if($slider->id==1)
+            $s1=$slider->ruta;
+            else if($slider->id==2)
+            $s2=$slider->ruta;
+            else
+            $s3=$slider->ruta;
+        }
+
+        return view('principal',compact('s1','s2','s3','autos'));
+    }
+
+    public function contacto(){
+
+        return view('contacto');
     }
 }
