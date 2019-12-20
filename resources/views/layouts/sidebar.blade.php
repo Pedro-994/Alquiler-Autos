@@ -39,7 +39,7 @@
 				<nav class="full-box nav-lateral-menu">
 					<ul>
 						<li>
-							<a href="/Admin"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard</a>
+							<a href="/admin"><i class="fab fa-dashcube fa-fw"></i> &nbsp; Dashboard</a>
 						</li>
 
 						<li>
